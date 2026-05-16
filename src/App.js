@@ -1,6 +1,7 @@
 import './App.css';
 import {useState} from "react";
 import "milligram";
+import LoginForm from "./LoginForm";
 
 function App() {
     // let email = 'krzygol@gmail.com';
@@ -8,14 +9,17 @@ function App() {
     // const [message, setMessage] = useState("Walidacja");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    function handleLogin(email) {
+        setEmail(email);
+        setIsLoggedIn(true)
+    }
+
     return (
         <div>
             <h1>Witaj w systemie do zapisów na zajęcia</h1>
 
             {!isLoggedIn &&
-            <p>Zaloguj się e-mailem
-            <input type="text" onChange={(event) => setEmail(event.target.value)}/>
-            <button onClick={() => setIsLoggedIn(true)}>Wchodzę</button></p>}
+                <LoginForm onLogin={handleLogin}/> }
 
             {isLoggedIn && <div>
             <h1>Witaj {email}</h1>
