@@ -2,35 +2,36 @@ import './App.css';
 import {useState} from "react";
 import "milligram";
 import LoginForm from "./LoginForm";
+import UserPanel from "./UserPanel";
 
 function App() {
-    // let email = 'krzygol@gmail.com';
-    const [email, setEmail] = useState('krzygol@gmail.com');
-    // const [message, setMessage] = useState("Walidacja");
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    function handleLogin(email) {
-        setEmail(email);
-        setIsLoggedIn(true)
-    }
+    const [loggedInUsername , setLoggedInUsername] = useState(null);
 
     return (
         <div>
             <h1>Witaj w systemie do zapisów na zajęcia</h1>
 
-            {!isLoggedIn &&
-                <LoginForm onLogin={handleLogin}/> }
+            {
+                loggedInUsername
+                    ? <UserPanel email={loggedInUsername}
+                                 onLogout={() =>  setLoggedInUsername(null)}/>
+                    : <LoginForm onLogin={(email) => setLoggedInUsername(email)}/>
+            }
 
-            {isLoggedIn && <div>
-            <h1>Witaj {email}</h1>
-                <a
-                    onClick={() => setIsLoggedIn(false)}
-                    style={{
-                        color: "blue",
-                        textDecoration: "underline",
-                        cursor: "pointer"
-                    }}>Wyloguj</a>
-            </div>}
+            {/*{!isLoggedIn &&*!/*/}
+        {/*    <LoginForm onLogin={handleLogin}/> }*/}
+
+        {/*{isLoggedIn && <div>*/}
+        {/*<h1>Witaj {email}</h1>*/}
+        {/*    <a*/}
+        {/*        onClick={() => setIsLoggedIn(false)}*/}
+        {/*        style={{*/}
+        {/*            color: "blue",*/}
+        {/*            textDecoration: "underline",*/}
+        {/*            cursor: "pointer"*/}
+        {/*        }}>Wyloguj</a>*/}
+        {/*</div>}
 
 
             {/*<h2>Twój e-mail to {email.toUpperCase()}</h2>*/}
