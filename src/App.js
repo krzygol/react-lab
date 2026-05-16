@@ -1,12 +1,13 @@
 import './App.css';
 import {useState} from "react";
+import "milligram";
 
 function App() {
     // let email = 'krzygol@gmail.com';
     const [email, setEmail] = useState('krzygol@gmail.com');
     // const [message, setMessage] = useState("Walidacja");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
- 
+
     return (
         <div>
             <h1>Witaj w systemie do zapisów na zajęcia</h1>
