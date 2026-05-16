@@ -3,10 +3,17 @@ import {useState} from "react";
 import "milligram";
 import LoginForm from "./LoginForm";
 import UserPanel from "./UserPanel";
+import NewMeetingForm from "./meetings/NewMeetingForm";
+import MeetingsList from "./meetings/MeetingsList";
+import MeetingsPage from "./meetings/MeetingsPage";
 
 function App() {
 
     const [loggedInUsername , setLoggedInUsername] = useState(null);
+
+    function handleMeetingSubmit(meeting) {
+        alert(meeting.title);
+    }
 
     return (
         <div>
@@ -14,10 +21,15 @@ function App() {
 
             {
                 loggedInUsername
-                    ? <UserPanel email={loggedInUsername}
-                                 onLogout={() =>  setLoggedInUsername(null)}/>
+                    ? <>
+                        <UserPanel email={loggedInUsername}
+                                   onLogout={() =>  setLoggedInUsername(null)}/>
+                        <MeetingsPage/>
+                    </>
                     : <LoginForm onLogin={(email) => setLoggedInUsername(email)}/>
+
             }
+
 
             {/*{!isLoggedIn &&*!/*/}
         {/*    <LoginForm onLogin={handleLogin}/> }*/}
